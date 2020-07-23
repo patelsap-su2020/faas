@@ -21,7 +21,7 @@ jobs:
              pwd
              sudo chmod 775 lambda.zip
              ls -al
-             aws lambda update-function-code --function-name lambda_function --zip-file /home/circleci/project/lambda.zip
+             aws lambda update-function-code --function-name lambda_function --zip-file fileb://home/circleci/project/lambda.zip
 workflow:
   jobs:
     - build
