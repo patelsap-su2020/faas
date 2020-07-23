@@ -1,0 +1,27 @@
+version: 2.1
+jobs:
+  build:
+     docker:
+       - image: circleci/openjdk:8-jdk
+         environment:
+         - AWS_PAGER: ""
+     steps:
+       - checkout
+       - run:
+           name: Build WAR file
+           command:  |
+             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+             unzip awscliv2.zip
+             sudo ./aws/install
+             sudo apt-get update -y
+             sudo apt-get install -y less
+             echo 'test'
+             pwd
+             zip -r lambda.zip Handler.java 
+             pwd
+             sudo chmod 775 lambda.zip
+             ls -al
+             aws lambda update-function-code \ --function-name lambda_function \ --zip-file fileb://lambda.zip
+workflow:
+  jobs:
+    - build
