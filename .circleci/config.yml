@@ -17,7 +17,7 @@ jobs:
              sudo apt-get install -y less
              echo 'test'
              pwd
-             zip -r lambda.zip Handler.java 
+             zip -r lambda.zip Handler.py 
              pwd
              sudo chmod 775 lambda.zip
              ls -al
